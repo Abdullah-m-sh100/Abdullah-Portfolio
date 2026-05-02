@@ -5,6 +5,7 @@ function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -25,7 +26,8 @@ function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container navbar-container">
-        <div className="navbar-logo">
+        
+        <div className="navbar-logo" onClick={() => scrollToSection('home')}>
           <span className="logo-text">Abdullah</span>
           <span className="logo-dot">.</span>
         </div>

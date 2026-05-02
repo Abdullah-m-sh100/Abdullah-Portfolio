@@ -108,7 +108,7 @@ function Contact() {
                   </svg>
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/abdullah-abu-shamla-016a88387/"
+                  href="https://www.linkedin.com/in/abdullah-m-sh/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-icon"

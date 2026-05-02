@@ -16,8 +16,8 @@
   height: 150%;
   background: radial-gradient(
     circle at center,
-    rgba(139, 21, 56, 0.3) 0%,
-    rgba(139, 21, 56, 0.15) 25%,
+    #8b15384d 0%,
+    #8b153826 25%,
     transparent 50%
   );
   animation: gradientFloat 20s ease-in-out infinite;

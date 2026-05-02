@@ -57,7 +57,7 @@ function Footer() {
                 </li>
                 <li>
                   <a
-                    href="https://www.linkedin.com/in/abdullah-abu-shamla-016a88387/"
+                    href="https://www.linkedin.com/in/abdullah-m-sh/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -75,6 +75,15 @@ function Footer() {
                 </li>
                 <li>
                   <a href="mailto:abdullah.m.sh100@gmail.com">Email</a>
+                </li>
+                <li>
+                  <a
+                    href="https://wa.me/972567303328?text=Hi%20Abdullah"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Whatsapp
+                  </a>{" "}
                 </li>
               </ul>
             </div>

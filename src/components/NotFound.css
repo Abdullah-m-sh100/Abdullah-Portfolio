@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap');
+
+/* ════════════════════════════════════════
+   Base Reset
+════════════════════════════════════════ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-dark);
+  font-family: var(--font-family-primary);
+  overflow: hidden;
+}
+
+/* ════════════════════════════════════════
+   Background Layer
+════════════════════════════════════════ */
+.nf-bg {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(139, 21, 56, 0.2) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(139, 21, 56, 0.12) 0%, transparent 70%),
+    var(--bg-dark);
+  z-index: var(--z-below);
+}
+
+/* ════════════════════════════════════════
+   Noise Overlay
+════════════════════════════════════════ */
+.nf-noise {
+  position: fixed;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: var(--z-base);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px;
+}
+
+/* ════════════════════════════════════════
+   Floating Particles
+════════════════════════════════════════ */
+.particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-base);
+}
+
+.particles > .particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--primary-light);
+  border-radius: var(--radius-full);
+  opacity: 0;
+  animation: floatUp var(--dur) ease-in infinite;
+  animation-delay: var(--delay);
+  left: var(--x);
+  bottom: -10px;
+  box-shadow: 0 0 6px var(--primary-light);
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) scale(1);        opacity: 0; }
+  10%  { opacity: 0.8; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(-100vh) scale(0.3); opacity: 0; }
+}
+
+/* ════════════════════════════════════════
+   Main Wrapper
+════════════════════════════════════════ */
+.nf-wrapper {
+  position: relative;
+  z-index: var(--z-dropdown);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-md);
+}
+
+/* ── Orbit Rings ── */
+.nf-wrapper > .nf-orbit {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border: 1px solid rgba(139, 21, 56, 0.1);
+  border-radius: var(--radius-full);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spin 20s linear infinite;
+  pointer-events: none;
+}
+
+.nf-wrapper > .nf-orbit::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: var(--primary-light);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 12px var(--primary-light);
+  transform: translateX(-50%);
+}
+
+.nf-wrapper > .nf-orbit.nf-orbit-2 {
+  width: 700px;
+  height: 700px;
+  border-color: rgba(139, 21, 56, 0.05);
+  animation: spin 35s linear infinite reverse;
+}
+
+.nf-wrapper > .nf-orbit.nf-orbit-2::before {
+  top: auto;
+  bottom: -4px;
+  background: var(--primary-dark);
+  box-shadow: 0 0 10px var(--primary-dark);
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ── 404 Giant Number ── */
+.nf-wrapper > .nf-code {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: clamp(6rem, 20vw, 16rem);
+  line-height: var(--line-height-tight);
+  letter-spacing: -4px;
+  position: relative;
+  animation: slideDown 0.8s cubic-bezier(.22, 1, .36, 1) forwards;
+  opacity: 0;
+}
+
+.nf-wrapper > .nf-code > span {
+  display: inline-block;
+}
+
+.nf-wrapper > .nf-code > .digit-4-l {
+  color: var(--text-primary);
+}
+
+.nf-wrapper > .nf-code > .digit-0 {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--burgundy-gradient-end) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 30px rgba(139, 21, 56, 0.5));
+  animation: slideDown 0.8s cubic-bezier(.22, 1, .36, 1) 0.1s forwards,
+             pulse 3s ease-in-out 1s infinite;
+  opacity: 0;
+}
+
+.nf-wrapper > .nf-code > .digit-4-r {
+  color: var(--text-primary);
+  animation-delay: 0.2s;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-60px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { filter: drop-shadow(0 0 20px rgba(139, 21, 56, 0.4)); }
+  50%       { filter: drop-shadow(0 0 50px rgba(166, 28, 61, 0.8)); }
+}
+
+/* ── Divider Bar ── */
+.nf-wrapper > .nf-glitch-bar {
+  width: 80px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--primary-burgundy), transparent);
+  margin: 0 auto var(--spacing-sm);
+  animation: fadeUp 0.5s 0.7s both, shimmer 2s 1s infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200px; }
+  100% { background-position:  200px; }
+}
+
+/* ── Headline ── */
+.nf-wrapper > .nf-headline {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  font-size: clamp(1.4rem, 4vw, var(--font-size-xl));
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+  animation: fadeUp 0.6s 0.5s both;
+}
+
+.nf-wrapper > .nf-headline > .accent {
+  color: var(--primary-light);
+}
+
+/* ── Subtitle ── */
+.nf-wrapper > .nf-sub {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  max-width: 420px;
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-md);
+  animation: fadeUp 0.6s 0.7s both;
+}
+
+/* ── Action Buttons ── */
+.nf-wrapper > .nf-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeUp 0.6s 0.9s both;
+}
+
+.nf-wrapper > .nf-actions > .btn-primary {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, var(--primary-light), var(--burgundy-gradient-end));
+  color: var(--color-white);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  box-shadow: var(--shadow-burgundy);
+}
+
+.nf-wrapper > .nf-actions > .btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.nf-wrapper > .nf-actions > .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(139, 21, 56, 0.5);
+}
+
+.nf-wrapper > .nf-actions > .btn-primary:hover::after {
+  opacity: 1;
+}
+
+.nf-wrapper > .nf-actions > .btn-outline {
+  padding: 0.75rem 2rem;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xs);
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+}
+
+.nf-wrapper > .nf-actions > .btn-outline:hover {
+  border-color: var(--primary-light);
+  color: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+/* ════════════════════════════════════════
+   Shared Animations
+════════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

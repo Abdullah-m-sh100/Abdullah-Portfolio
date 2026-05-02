@@ -27,9 +27,9 @@ function Skills() {
       category: "Frontend Development",
       items: [
         { name: "React.js", level: 95, icon: "⚛️" },
-        { name: "JavaScript (ES6+)", level: 90, icon: "🟨" },
+        { name: "JavaScript (ES6+)", level: 94, icon: "🟨" },
         { name: "HTML5", level: 95, icon: "🔶" },
-        { name: "CSS3", level: 90, icon: "🎨" },
+        { name: "CSS3", level: 95, icon: "🎨" },
       ],
     },
     {
@@ -37,8 +37,8 @@ function Skills() {
       items: [
         { name: "Git & GitHub", level: 95, icon: "🔧" },
         { name: "Responsive Design", level: 99, icon: "📱" },
-        { name: "Web Performance", level: 90, icon: "⚡" },
-        { name: "RESTful APIs", level: 85, icon: "🔗" },
+        { name: "Web Performance", level: 95, icon: "⚡" },
+        { name: "RESTful APIs", level: 90, icon: "🔗" },
       ],
     },
   ];
