@@ -28,7 +28,7 @@ function Projects() {
       tags: ["React.js", "CSS Animations", "UI/UX", "JavaScript"],
       gradient: "linear-gradient(135deg, #A61C3D, #8B1538)",
       icon: "☕",
-      link: "https://github.com/Abdullah-m-sh100/Koppee-Coffee",
+      link: "https://cheery-stardust-f40d5c.netlify.app/",
     },
     {
       id: 3,
